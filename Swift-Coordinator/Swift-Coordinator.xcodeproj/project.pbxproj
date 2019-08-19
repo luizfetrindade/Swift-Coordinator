@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61A71A0C23074C5E004018D8 /* NowPlayingMoviesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A71A0B23074C5E004018D8 /* NowPlayingMoviesProvider.swift */; };
+		61B1A78623073F460016944B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B1A78523073F460016944B /* Movie.swift */; };
+		61B1A78823073F540016944B /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B1A78723073F540016944B /* Genre.swift */; };
+		61B1A78A230742560016944B /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B1A789230742560016944B /* Request.swift */; };
+		61B1A78E230749BA0016944B /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B1A78D230749BA0016944B /* DataParser.swift */; };
 		6DE8BDE82307297C001402E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8BDE72307297C001402E4 /* AppDelegate.swift */; };
 		6DE8BDEA2307297C001402E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8BDE92307297C001402E4 /* ViewController.swift */; };
 		6DE8BDED2307297C001402E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DE8BDEB2307297C001402E4 /* Main.storyboard */; };
@@ -15,6 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61A71A0B23074C5E004018D8 /* NowPlayingMoviesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMoviesProvider.swift; sourceTree = "<group>"; };
+		61B1A78523073F460016944B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		61B1A78723073F540016944B /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		61B1A789230742560016944B /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Request.swift; path = "Swift-Coordinator/Model/Request.swift"; sourceTree = SOURCE_ROOT; };
+		61B1A78D230749BA0016944B /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataParser.swift; path = "Swift-Coordinator/Utils/DataParser.swift"; sourceTree = SOURCE_ROOT; };
 		6DE8BDE42307297C001402E4 /* Swift-Coordinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-Coordinator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DE8BDE72307297C001402E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DE8BDE92307297C001402E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +45,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61B1A782230736130016944B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				61B1A78523073F460016944B /* Movie.swift */,
+				61B1A78723073F540016944B /* Genre.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		61B1A78F23074BF10016944B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				61B1A78D230749BA0016944B /* DataParser.swift */,
+				6DE8BDFC230729D2001402E4 /* Networking */,
+				61A71A0B23074C5E004018D8 /* NowPlayingMoviesProvider.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		6DE8BDDB2307297C001402E4 = {
 			isa = PBXGroup;
 			children = (
@@ -54,20 +83,13 @@
 		6DE8BDE62307297C001402E4 /* Swift-Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				61B1A78F23074BF10016944B /* Utils */,
+				61B1A782230736130016944B /* Model */,
 				6DE8BDFD23072A89001402E4 /* Resources */,
-				6DE8BDFC230729D2001402E4 /* Networking */,
 				6DE8BDFB230729BE001402E4 /* View */,
 				6DE8BDFA230729B1001402E4 /* Controller */,
-				6DE8BDF9230729A0001402E4 /* Model */,
 			);
 			path = "Swift-Coordinator";
-			sourceTree = "<group>";
-		};
-		6DE8BDF9230729A0001402E4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		6DE8BDFA230729B1001402E4 /* Controller */ = {
@@ -90,8 +112,10 @@
 		6DE8BDFC230729D2001402E4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				61B1A789230742560016944B /* Request.swift */,
 			);
-			path = Networking;
+			name = Networking;
+			path = ../Networking;
 			sourceTree = "<group>";
 		};
 		6DE8BDFD23072A89001402E4 /* Resources */ = {
@@ -177,6 +201,11 @@
 			files = (
 				6DE8BDEA2307297C001402E4 /* ViewController.swift in Sources */,
 				6DE8BDE82307297C001402E4 /* AppDelegate.swift in Sources */,
+				61B1A78E230749BA0016944B /* DataParser.swift in Sources */,
+				61A71A0C23074C5E004018D8 /* NowPlayingMoviesProvider.swift in Sources */,
+				61B1A78A230742560016944B /* Request.swift in Sources */,
+				61B1A78623073F460016944B /* Movie.swift in Sources */,
+				61B1A78823073F540016944B /* Genre.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,13 +352,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V43H9KVKKZ;
+				DEVELOPMENT_TEAM = C3X5LUYPC4;
 				INFOPLIST_FILE = "$(SRCROOT)/Swift-Coordinator/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "lfet.Swift-Coordinator";
+				PRODUCT_BUNDLE_IDENTIFIER = "lfet.Swift-Coordinators";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -341,13 +370,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V43H9KVKKZ;
+				DEVELOPMENT_TEAM = C3X5LUYPC4;
 				INFOPLIST_FILE = "$(SRCROOT)/Swift-Coordinator/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "lfet.Swift-Coordinator";
+				PRODUCT_BUNDLE_IDENTIFIER = "lfet.Swift-Coordinators";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
