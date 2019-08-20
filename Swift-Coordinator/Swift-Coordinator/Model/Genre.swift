@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct Genres: Codable {
+    var genres: [Genre]?
+}
+
 struct Genre: Codable {
     var id: Int
     var name: String

@@ -18,4 +18,19 @@ struct DataParser {
         print(response)
         return response
     }
+    
+    func popularMoviesParser(data: Data) -> Results? {
+        let response = try? decoder.decode(Results.self, from: data)
+        print("- - - - - - - -")
+        print(response)
+        return response
+    }
+    
+    func genreMoviesParser(data: Data) -> Genres? {
+        let response = try? decoder.decode(Genres.self, from: data)
+        print("- - - - - - - -")
+        print(response)
+        return response
+    }
+    
 }

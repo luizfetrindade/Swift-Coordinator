@@ -12,6 +12,13 @@ class ViewController: UIViewController {
     
     let movieProvider = NowPlayingMoviesProvider()
     var movies = Results()
+    
+    let popularMoviesProvider = PopularMoviesProvider()
+    var popularMovies = Results()
+    
+    let genreProvider = GenreProvider()
+    var genreOfMovies = Genres()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,6 +26,18 @@ class ViewController: UIViewController {
             guard let strongSelf = self, let movies = movies else {return}
             strongSelf.movies = movies
             print(movies)
+        }
+        
+        popularMoviesProvider.providePopularMoviesProvider {[weak self] (popularMovies) in
+            guard let strongSelf = self, let popularMovies = popularMovies else {return}
+            strongSelf.popularMovies = popularMovies
+            print(popularMovies)
+        }
+        
+        genreProvider.genreProvider {[weak self] (genreOfMovies) in
+            guard let strongSelf = self, let genreOfMovies = genreOfMovies else {return}
+            strongSelf.genreOfMovies = genreOfMovies
+            print(genreOfMovies)
         }
         // Do any additional setup after loading the view.
     }
