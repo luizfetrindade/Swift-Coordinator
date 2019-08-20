@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, Storyboarded {
+    
+    weak var coordinator: MainCoordinator?
     
     let movieProvider = NowPlayingMoviesProvider()
     var movies = Results()
@@ -41,5 +43,16 @@ class ViewController: UIViewController {
         }
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func detailTapped(_ sender: Any) {
+        coordinator?.goToMovieDetails()
+    }
+    
+    
+    @IBAction func nowPlayingTapped(_ sender: Any) {
+        coordinator?.goToNowPlaying()
+    }
+    
 }
 
