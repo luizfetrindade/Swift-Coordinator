@@ -9,7 +9,7 @@
 import UIKit
 
 class NowPlayingViewController: UIViewController, Storyboarded {
-    
+
     weak var coordinator: MainCoordinator?
 
     override func viewDidLoad() {
