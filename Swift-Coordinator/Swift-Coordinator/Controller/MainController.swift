@@ -10,7 +10,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var mainTableView: UITableView!
     
     let movieProvider = NowPlayingMoviesProvider()
@@ -25,10 +24,6 @@ class MainViewController: UIViewController {
         movieProvider.provideNowPlayingMoviesProvider { [weak self] (movies) in
             guard let strongSelf = self, let movies = movies else {return}
             strongSelf.movies = movies
-            
-//            DispatchQueue.main.async {
-//                strongSelf.mainCollectionView.reloadData()
-//            }
         }
         
         popularMoviesProvider.providePopularMoviesProvider {[weak self] (popularMovies) in
@@ -40,39 +35,44 @@ class MainViewController: UIViewController {
             }
         }
         
-        self.mainTableView.delegate = self
+        let nibName = UINib(nibName: "PopularMoviesTableViewCell", bundle: nil)
+        mainTableView.register(nibName, forCellReuseIdentifier: "PopularMoviesTableViewCell")
+        
+//        self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
     }
 }
 
-extension MainViewController: UITableViewDelegate {
-    
-}
-
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        guard let rows = popularMovies.results else { return 0 }
+        return rows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PopularMoviesTableViewCell", for: indexPath) as? PopularMoviesTableViewCell {
+            let movies = popularMovies.results?[indexPath.row]
+            cell.titleLabel.text = movies?.title
+            cell.descriptionLabel.text = movies?.overview
+            cell.scoreLabel.text = "\(String(describing: movies?.vote_avarage))"
+            
+            let string = movies!.poster_path!
+            let stringUrl = "https://image.tmdb.org/t/p/w500\(string)"
+            
+            let posterUrl = URL(string: stringUrl)
+            let data = try? Data(contentsOf: posterUrl!)
+            if let imageData = data {
+                cell.posterImageView.image = UIImage(data: imageData)
+            }
+            
+            
+//            cell.commonInit(title: (movies?.title)!, description: (movies?.overview!)!, score: (movies?.vote_avarage)!, poster: (movies?.poster_path)! )
+            return cell
+        }
+        return UITableViewCell()
     }
     
-    
-}
-
-extension MainViewController: UICollectionViewDelegate {
-    
-}
-
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
-    }
-    
-    
 }
