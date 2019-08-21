@@ -42,6 +42,7 @@ class ViewController: UIViewController, Storyboarded {
         
         //        self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        self.mainTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
     
@@ -67,7 +68,7 @@ extension ViewController: UITableViewDataSource {
             let movies = popularMovies.results?[indexPath.row]
             cell.titleLabel.text = movies?.title
             cell.descriptionLabel.text = movies?.overview
-            cell.scoreLabel.text = "\(String(describing: movies?.vote_avarage))"
+            cell.scoreLabel.text = "\(movies!.vote_average!)"
             
             let string = movies!.poster_path!
             let stringUrl = "https://image.tmdb.org/t/p/w500\(string)"
@@ -78,8 +79,6 @@ extension ViewController: UITableViewDataSource {
                 cell.posterImageView.image = UIImage(data: imageData)
             }
             
-            
-            //            cell.commonInit(title: (movies?.title)!, description: (movies?.overview!)!, score: (movies?.vote_avarage)!, poster: (movies?.poster_path)! )
             return cell
         }
         return UITableViewCell()

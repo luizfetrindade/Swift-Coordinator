@@ -17,10 +17,13 @@ class PopularMoviesTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        posterImageView.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

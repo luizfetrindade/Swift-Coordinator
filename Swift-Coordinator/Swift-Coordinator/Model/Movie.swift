@@ -18,7 +18,7 @@ struct Movie: Codable {
     var poster_path: String?
     var genre_ids: [Int]?
     var overview: String?
-    var vote_avarage: Double?
+    var vote_average: Double?
 }
 
 

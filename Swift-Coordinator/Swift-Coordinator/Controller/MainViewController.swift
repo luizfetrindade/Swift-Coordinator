@@ -56,7 +56,7 @@ extension MainViewController: UITableViewDataSource {
             let movies = popularMovies.results?[indexPath.row]
             cell.titleLabel.text = movies?.title
             cell.descriptionLabel.text = movies?.overview
-            cell.scoreLabel.text = "\(String(describing: movies?.vote_avarage))"
+            cell.scoreLabel.text = "\(String(describing: movies?.vote_average))"
             
             let string = movies!.poster_path!
             let stringUrl = "https://image.tmdb.org/t/p/w500\(string)"
