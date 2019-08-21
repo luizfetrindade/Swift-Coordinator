@@ -11,11 +11,12 @@ import UIKit
 class ViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var releaseCollectionView: UICollectionView!
     
     weak var coordinator: MainCoordinator?
     
     let movieProvider = NowPlayingMoviesProvider()
-    var movies = Results()
+    var nowMovies = Results()
     
     let popularMoviesProvider = PopularMoviesProvider()
     var popularMovies = Results()
@@ -23,25 +24,35 @@ class ViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movieProvider.provideNowPlayingMoviesProvider { [weak self] (movies) in
-            guard let strongSelf = self, let movies = movies else {return}
-            strongSelf.movies = movies
-        }
-        
+//        movieProvider.provideNowPlayingMoviesProvider { [weak self] (nowMovies) in
+//            guard let strongSelf = self, let popularMovies = popularMovies else {return}
+//            strongSelf.popularMovies = popularMovies
+//
+//            DispatchQueue.main.async {
+//                strongSelf.releaseCollectionView.reloadData()
+//            }
+//
+//        }
+
         popularMoviesProvider.providePopularMoviesProvider {[weak self] (popularMovies) in
             guard let strongSelf = self, let popularMovies = popularMovies else {return}
             strongSelf.popularMovies = popularMovies
             
             DispatchQueue.main.async {
                 strongSelf.mainTableView.reloadData()
+                strongSelf.releaseCollectionView.reloadData()
             }
         }
         
         let nibName = UINib(nibName: "PopularMoviesTableViewCell", bundle: nil)
         mainTableView.register(nibName, forCellReuseIdentifier: "PopularMoviesTableViewCell")
         
-        //        self.mainTableView.delegate = self
+        let nibCollectionName = UINib(nibName: "ReleaseCollectionViewCell", bundle: nil)
+        releaseCollectionView.register(nibCollectionName, forCellWithReuseIdentifier: "ReleaseCollectionViewCell")
+        
+        
         self.mainTableView.dataSource = self
+        self.releaseCollectionView.dataSource = self
         self.mainTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
@@ -57,6 +68,7 @@ class ViewController: UIViewController, Storyboarded {
     
 }
 
+//MARK - TableView DataSource Methods
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let rows = popularMovies.results else { return 0 }
@@ -78,13 +90,43 @@ extension ViewController: UITableViewDataSource {
             if let imageData = data {
                 cell.posterImageView.image = UIImage(data: imageData)
             }
-            
             return cell
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+}
+
+//MARK - Collection View DataSource Methods
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReleaseCollectionViewCell", for: indexPath) as? ReleaseCollectionViewCell {
+            let movies = popularMovies.results?[indexPath.row]
+            cell.title.text = movies?.title
+//            cell.score.text = "\(movies!.vote_average!)"
+            
+//            let string = movies!.poster_path!
+            let stringUrl = "https://image.tmdb.org/t/p/w500(string)"
+            
+            let posterUrl = URL(string: stringUrl)
+            let data = try? Data(contentsOf: posterUrl!)
+            if let imageData = data {
+                cell.poster.image = UIImage(data: imageData)
+            }
+            
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
 }
