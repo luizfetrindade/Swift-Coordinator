@@ -24,15 +24,15 @@ class ViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        movieProvider.provideNowPlayingMoviesProvider { [weak self] (nowMovies) in
-//            guard let strongSelf = self, let popularMovies = popularMovies else {return}
-//            strongSelf.popularMovies = popularMovies
-//
-//            DispatchQueue.main.async {
-//                strongSelf.releaseCollectionView.reloadData()
-//            }
-//
-//        }
+        movieProvider.provideNowPlayingMoviesProvider { [weak self] (nowMovies) in
+            guard let strongSelf = self, let nowMovies = nowMovies else {return}
+            strongSelf.nowMovies = nowMovies
+
+            DispatchQueue.main.async {
+                strongSelf.releaseCollectionView.reloadData()
+            }
+
+        }
 
         popularMoviesProvider.providePopularMoviesProvider {[weak self] (popularMovies) in
             guard let strongSelf = self, let popularMovies = popularMovies else {return}
@@ -40,7 +40,6 @@ class ViewController: UIViewController, Storyboarded {
             
             DispatchQueue.main.async {
                 strongSelf.mainTableView.reloadData()
-                strongSelf.releaseCollectionView.reloadData()
             }
         }
         
@@ -56,20 +55,23 @@ class ViewController: UIViewController, Storyboarded {
         self.mainTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
-    
-    @IBAction func detailTapped(_ sender: Any) {
-        coordinator?.goToMovieDetails()
-    }
-    
-    
     @IBAction func nowPlayingTapped(_ sender: Any) {
         coordinator?.goToNowPlaying()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator?.goToMovieDetails(to: (nowMovies.results?[indexPath.row])!)
     }
     
 }
 
 //MARK - TableView DataSource Methods
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.goToMovieDetails(to: (popularMovies.results?[indexPath.row])!)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let rows = popularMovies.results else { return 0 }
         return rows.count
@@ -95,25 +97,26 @@ extension ViewController: UITableViewDataSource {
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
 }
 
 //MARK - Collection View DataSource Methods
-extension ViewController: UICollectionViewDataSource {
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        guard let movies = nowMovies.results else { return 0 }
+        
+        let numberOfMovies = movies.count
+        
+        return numberOfMovies > 5 ? 5 : numberOfMovies
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReleaseCollectionViewCell", for: indexPath) as? ReleaseCollectionViewCell {
-            let movies = popularMovies.results?[indexPath.row]
+            let movies = nowMovies.results?[indexPath.row]
             cell.title.text = movies?.title
-//            cell.score.text = "\(movies!.vote_average!)"
+            cell.score.text = "\(movies!.vote_average!)"
             
-//            let string = movies!.poster_path!
-            let stringUrl = "https://image.tmdb.org/t/p/w500(string)"
+            let string = movies!.poster_path!
+            let stringUrl = "https://image.tmdb.org/t/p/w500\(string)"
             
             let posterUrl = URL(string: stringUrl)
             let data = try? Data(contentsOf: posterUrl!)
@@ -126,7 +129,4 @@ extension ViewController: UICollectionViewDataSource {
         return UICollectionViewCell()
     }
     
-    func collectionView(_ collectionView: UICollectionView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
 }

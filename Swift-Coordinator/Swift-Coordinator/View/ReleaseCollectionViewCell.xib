@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSi-Di-QtU">
                         <rect key="frame" x="0.0" y="0.0" width="157" height="283"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O8g-y1-LwC">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="O8g-y1-LwC">
                                 <rect key="frame" x="3" y="4" width="151" height="226"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tuc-bg-ZDA">
@@ -34,8 +34,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Fdf-A2-gmP">
                                 <rect key="frame" x="4" y="263" width="16" height="16"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKs-zE-ojk">
-                                <rect key="frame" x="29" y="264" width="33" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKs-zE-ojk">
+                                <rect key="frame" x="29" y="264" width="124" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -54,6 +54,7 @@
                             <constraint firstItem="O8g-y1-LwC" firstAttribute="top" secondItem="gSi-Di-QtU" secondAttribute="top" constant="4" id="ha4-BH-ait"/>
                             <constraint firstItem="Tuc-bg-ZDA" firstAttribute="leading" secondItem="gSi-Di-QtU" secondAttribute="leading" constant="4" id="hw7-bt-rVn"/>
                             <constraint firstItem="Fdf-A2-gmP" firstAttribute="top" secondItem="Tuc-bg-ZDA" secondAttribute="bottom" constant="6" id="pHW-DG-bdF"/>
+                            <constraint firstAttribute="trailing" secondItem="AKs-zE-ojk" secondAttribute="trailing" constant="4" id="y5X-dL-5TS"/>
                         </constraints>
                     </view>
                 </subviews>

@@ -23,8 +23,9 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToMovieDetails(){
+    func goToMovieDetails(to movieSelected: Movie){
         let vc = MovieDetailsViewController.instantiate()
+        vc.movie = movieSelected
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

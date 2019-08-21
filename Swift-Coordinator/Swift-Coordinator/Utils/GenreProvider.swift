@@ -16,7 +16,6 @@ struct GenreProvider {
         data.fetchGenre { (data) in
             let genres = self.parser.genreMoviesParser(data: data!)
             completitionHandler(genres)
-            //print(movies)
         }
     }
 }
