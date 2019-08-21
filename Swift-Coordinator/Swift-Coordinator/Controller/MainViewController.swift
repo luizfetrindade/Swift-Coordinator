@@ -8,9 +8,11 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var mainTableView: UITableView!
+    
+    weak var coordinator: MainCoordinator?
     
     let movieProvider = NowPlayingMoviesProvider()
     var movies = Results()
