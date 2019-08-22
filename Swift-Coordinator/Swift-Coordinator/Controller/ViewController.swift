@@ -56,7 +56,9 @@ class ViewController: UIViewController, Storyboarded {
     }
     
     @IBAction func nowPlayingTapped(_ sender: Any) {
-        coordinator?.goToNowPlaying()
+        if let coordinator = coordinator, let nowMovies = nowMovies.results {
+            coordinator.goToNowPlaying(to: nowMovies)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

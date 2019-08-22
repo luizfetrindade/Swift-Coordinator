@@ -30,8 +30,9 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToNowPlaying(){
+    func goToNowPlaying(to nowPlayingMovies: [Movie]){
         let vc = NowPlayingViewController.instantiate()
+        vc.movies = nowPlayingMovies
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

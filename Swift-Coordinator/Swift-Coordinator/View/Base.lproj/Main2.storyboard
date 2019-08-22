@@ -188,9 +188,62 @@
                     <view key="view" contentMode="scaleToFill" id="GLF-Pg-Kcc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="t57-ZN-oV1">
+                                <rect key="frame" x="15" y="64" width="384" height="832"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaJ-oy-wLY">
+                                        <rect key="frame" x="0.0" y="0.0" width="37" height="17.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="15" name="SFProText-Regular"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jnk-op-N0T">
+                                        <rect key="frame" x="0.0" y="37.5" width="384" height="794.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="kYH-nI-5xT">
+                                            <size key="itemSize" width="152" height="278"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" reuseIdentifier="ReleaseCollectionViewCell" id="O1g-bu-lBZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="152" height="278"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="152" height="278"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                                <size key="customSize" width="152" height="278"/>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Jnk-op-N0T" secondAttribute="trailing" id="EvM-cj-zij"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="t57-ZN-oV1" firstAttribute="top" secondItem="zbr-yb-i7Y" secondAttribute="top" constant="20" id="NSI-Us-fiY"/>
+                            <constraint firstItem="zbr-yb-i7Y" firstAttribute="trailing" secondItem="t57-ZN-oV1" secondAttribute="trailing" constant="15" id="PZv-vp-UjZ"/>
+                            <constraint firstAttribute="bottom" secondItem="t57-ZN-oV1" secondAttribute="bottom" id="TdK-QE-ZtF"/>
+                            <constraint firstItem="t57-ZN-oV1" firstAttribute="leading" secondItem="GLF-Pg-Kcc" secondAttribute="leading" constant="15" id="jiZ-ff-KHY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zbr-yb-i7Y"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="Jnk-op-N0T" id="yFT-b9-5w6"/>
+                        <outlet property="numberOfResults" destination="aaJ-oy-wLY" id="QSA-xx-rFd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIs-xD-eps" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
